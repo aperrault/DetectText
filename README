@@ -6,8 +6,8 @@ Detect text with stroke width transform.
 Dependencies: OpenCV, boost.
 
 To compile:
-g++ -o TextDetection FeaturesMain.cpp TextDetection.cpp -Ipath_to_current_directory
-where path_to_current_directory is replaced with the absolute path to the current directory.
+g++ -o DetectText TextDetection.cpp FeaturesMain.cpp -lopencv_core -lopencv_highgui -lopencv_imgproc -I/path/to/current/directory
+where /path/to/current/directory is replaced with the absolute path to the current directory.
 
 To run:
 ./TextDetection input_file output_file dark_on_light
