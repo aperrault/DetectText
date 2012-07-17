@@ -387,7 +387,7 @@ void strokeWidthTransform (IplImage * edgeImage,
                            IplImage * SWTImage,
                            std::vector<Ray> & rays) {
     // First pass
-    float eps = 0.0001;
+    float prec = .05;
     for( int row = 0; row < edgeImage->height; row++ ){
         const uchar* ptr = (const uchar*)(edgeImage->imageData + row * edgeImage->widthStep);
         for ( int col = 0; col < edgeImage->width; col++ ){
@@ -407,7 +407,6 @@ void strokeWidthTransform (IplImage * edgeImage,
                 int curPixY = row;
                 float G_x = CV_IMAGE_ELEM ( gradientX, float, row, col);
                 float G_y = CV_IMAGE_ELEM ( gradientY, float, row, col);
-                float xdist,ydist,incr;
                 // normalize gradient
                 float mag = sqrt( (G_x * G_x) + (G_y * G_y) );
                 if (dark_on_light){
@@ -418,26 +417,9 @@ void strokeWidthTransform (IplImage * edgeImage,
                     G_y = G_y/mag;
 
                 }
-                //std::cout << G_x << " " << G_y << std::endl;
                 while (true) {
-                    // populate curX and curY
-                    if (G_x < 0) {
-                        xdist = curX - floor(curX);
-                    } else {
-                        xdist = ceil(curX) - curX;
-                    }
-                    if (G_y < 0) {
-                        ydist = curY - floor(curY);
-                    } else {
-                        ydist = ceil(curY) - curY;
-                    }
-                    incr = std::min(std::abs(ydist/G_y),std::abs(xdist/G_x))+eps;
-                    //std::cout << std::abs(ydist/G_y) << ' ' << std::abs(xdist/G_x) << std::endl; 
-                    //std::cout << curX << ' ' << curY << std::endl;
-                    //std::cout << incr << std::endl;
-                    //std::cout.flush();
-                    curX += G_x*incr;
-                    curY += G_y*incr;
+                    curX += G_x*prec;
+                    curY += G_y*prec;
                     if ((int)(floor(curX)) != curPixX || (int)(floor(curY)) != curPixY) {
                         curPixX = (int)(floor(curX));
                         curPixY = (int)(floor(curY));
