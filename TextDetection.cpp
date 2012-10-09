@@ -129,7 +129,8 @@ void normalizeImage (IplImage * input, IplImage * output) {
 }
 
 void renderComponents (IplImage * SWTImage, std::vector<std::vector<Point2d> > & components, IplImage * output) {
-    for (std::vector<std::vector<Point2d> >::iterator it = components.begin(); it != components.end();it++) {
+    cvZero(output);
+	for (std::vector<std::vector<Point2d> >::iterator it = components.begin(); it != components.end();it++) {
         for (std::vector<Point2d>::iterator pit = it->begin(); pit != it->end(); pit++) {
             CV_IMAGE_ELEM(output, float, pit->y, pit->x) = CV_IMAGE_ELEM(SWTImage, float, pit->y, pit->x);
         }
@@ -278,7 +279,7 @@ void renderChains (IplImage * SWTImage,
             cvCreateImage ( cvGetSize ( output ), IPL_DEPTH_32F, 1 );
     renderComponents(SWTImage,componentsRed,outTemp);
     cvConvertScale(outTemp, output, 255, 0);
-
+	cvReleaseImage(&outTemp);
 }
 
 IplImage * textDetection (IplImage * input, bool dark_on_light)
