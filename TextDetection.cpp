@@ -871,7 +871,7 @@ std::vector<Chain> makeChains( IplImage * colorImage,
 
     // form all eligible pairs and calculate the direction of each
     std::vector<Chain> chains;
-    for ( unsigned int i = 0; i < components.size() - 1; i++ ) {
+    for ( unsigned int i = 0; i < components.size(); i++ ) {
         for ( unsigned int j = i + 1; j < components.size(); j++ ) {
             // TODO add color metric
             if ( (compMedians[i]/compMedians[j] <= 2.0 || compMedians[j]/compMedians[i] <= 2.0) &&
