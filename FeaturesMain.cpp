@@ -20,7 +20,7 @@
 #include <cassert>
 #include <fstream>
 #include "TextDetection.h"
-#include <opencv/highgui.h>
+#include <opencv2/highgui/highgui.hpp>
 #include <exception>
 
 void convertToFloatImage ( IplImage * byteImage, IplImage * floatImage )

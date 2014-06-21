@@ -33,9 +33,9 @@
 #include <cassert>
 #include <cmath>
 #include <iostream>
-#include <opencv/cv.h>
-#include <opencv/highgui.h>
-#include <opencv/cxcore.h>
+#include <opencv2/opencv.hpp>
+#include <opencv2/highgui/highgui.hpp>
+#include <opencv2/core/core_c.h>
 #include <math.h>
 #include <time.h>
 #include <utility>
