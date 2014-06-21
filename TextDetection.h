@@ -19,7 +19,7 @@
 #ifndef TEXTDETECTION_H
 #define TEXTDETECTION_H
 
-#include <opencv/cv.h>
+#include <opencv2/opencv.hpp>
 
 struct Point2d {
     int x;
