@@ -7,7 +7,9 @@ Detect text with stroke width transform.
 OpenCV 2.4+, boost.
 
 ## Compile
-g++ -o DetectText TextDetection.cpp FeaturesMain.cpp -lopencv_core -lopencv_highgui -lopencv_imgproc -I/path/to/current/directory
+
+    g++ -o DetectText TextDetection.cpp FeaturesMain.cpp -lopencv_core -lopencv_highgui -lopencv_imgproc -I/path/to/current/directory
+
 where /path/to/current/directory is replaced with the absolute path to the current directory.
 
 ### Using CMake
